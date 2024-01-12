@@ -26,7 +26,8 @@
       "atoms/*": ["./src/atoms/*.ts"],
       "hooks/*": ["./src/hooks/*.ts"],
       "types/*": ["./src/types/*.ts"],
-      "style/*": ["./src/styles/*"]
+      "style/*": ["./src/styles/*"],
+      "api/*": ["./src/api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
