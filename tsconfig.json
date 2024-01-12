@@ -25,7 +25,8 @@
       "layouts/*": ["./src/layouts/*.tsx"],
       "atoms/*": ["./src/atoms/*.ts"],
       "hooks/*": ["./src/hooks/*.ts"],
-      "types/*": ["./src/types/*.ts"]
+      "types/*": ["./src/types/*.ts"],
+      "style/*": ["./src/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
