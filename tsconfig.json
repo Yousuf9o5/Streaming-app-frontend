@@ -21,7 +21,7 @@
     "paths": {
       "components/*": ["./src/components/*.tsx"],
       "images/*": ["./public/images/*"],
-      "icons/*": ["./public/icons/*.svg"],
+      "svgs/*": ["./public/svgs/*.svg"],
       "layouts/*": ["./src/layouts/*.tsx"],
       "atoms/*": ["./src/atoms/*.ts"],
       "hooks/*": ["./src/hooks/*.ts"],
