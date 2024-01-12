@@ -1,4 +1,3 @@
-
 export type setBoolean = React.Dispatch<React.SetStateAction<boolean>>;
 
 export type setString = React.Dispatch<React.SetStateAction<string>>;
@@ -11,8 +10,6 @@ export type setArray = React.Dispatch<React.SetStateAction<any[]>>;
 
 export type setObject = React.Dispatch<React.SetStateAction<Object>>;
 
-export type Node = React.ReactNode;
+export type Nodes = React.ReactNode;
 
 export type Event = React.ChangeEvent<any>;
-
-    
