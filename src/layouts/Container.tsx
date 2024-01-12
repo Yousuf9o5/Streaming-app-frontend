@@ -1,13 +1,12 @@
 import React from "react";
-import styles from "./Container.module.css";
 
 type Props = {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 };
 
 const Container = ({ children, className }: Props) => {
-  return <div className={className}>{children}</div>;
+  return <div className={`flex gap-[1rem] ${className ?? ""}`}>{children}</div>;
 };
 
 export default Container;

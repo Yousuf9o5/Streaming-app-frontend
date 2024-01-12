@@ -1,3 +1,7 @@
+/* ########## tailwindcss ########## */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ########## vars ########## */
 @import "./vars";
@@ -13,4 +17,3 @@
 
 /* ########## components ########## */
 @import "../components/components";
-
