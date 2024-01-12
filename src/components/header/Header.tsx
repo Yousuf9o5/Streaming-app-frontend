@@ -1,40 +1,36 @@
-import Container from 'components/container/Container'
-import Link from 'next/link'
-import styles from './Header.module.css'
-import React from 'react'
-import Image from 'next/image'
-import icon from 'svgs/undraw_pic_profile_re_7g2h'
+import Container from "components/container/Container";
+import Link from "next/link";
+import styles from "./Header.module.css";
+import React from "react";
+import Image from "next/image";
+import icon from "svgs/undraw_pic_profile_re_7g2h.svg";
 
 type Props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const Header = ({children}:Props) => {
+const Header = ({ children }: Props) => {
   return (
-
     <div>
-        <Container  >
-        
+      <Container>
         <div className={styles.head}>
           <h1>party app</h1>
           <ul className={styles.ul}>
             <li>
-              <Link className={styles.active} href="/">Home</Link>
+              <Link className={styles.active} href="/">
+                Home
+              </Link>
             </li>
             <li>
               <Link href="/">
-                <Image  src={icon} alt='' />
-
+                <Image src={icon} alt="" />
               </Link>
             </li>
-           
           </ul>
         </div>
-        </Container>
-            
-
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
