@@ -10,6 +10,10 @@ function Index() {
     <Container className="!grid m-auto justify-center w-[min(100%,_65rem)] overflow-hidden">
       <Header />
       <Introduction />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36fbd1fa72aec2b102fcda08c753305bfbafd1be
       <Features />
     </Container>
   );
