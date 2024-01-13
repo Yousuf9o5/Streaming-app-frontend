@@ -31,6 +31,18 @@
   font-size: clamp(1rem, 0.8vw, 0.8rem);
 }
 
+[data-theme=light] {
+  --primary-clr: #565fe9;
+  --secondary-clr: white;
+  --text-clr: rgb(32, 32, 32);
+}
+
+[data-theme=dark] {
+  --primary-clr: #565fe9;
+  --secondary-clr: rgb(32, 32, 32);
+  --text-clr: white;
+}
+
 /* ########## animations ########## */
 .vertical-slide {
   animation-name: vertical-slide-animations;
@@ -48,6 +60,15 @@
   }
 }
 /* ########## index ########## */
+:root {
+  background-color: var(--secondary-clr);
+  color: var(--text-clr);
+}
+
+input {
+  background: transparent;
+}
+
 /* ########## pages ########## */
 /* ########## layouts ########## */
 /* ########## components ########## */

@@ -28,7 +28,8 @@
       "types/*": ["./src/types/*.ts"],
       "style/*": ["./src/styles/*"],
       "api/*": ["./src/api/*"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "anim/*": ["./public/animations/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,27 +1,22 @@
 import Container from "layouts/Container";
 import Image from "next/image";
 import React from "react";
-
-const cards = [
-  {
-    icon: "",
-    desc: "",
-  },
-];
+import { cardsData } from "../data/featuresData";
 
 function Features() {
   return (
     <Container className="w-full !grid grid-cols-3 gap-1 py-6 px-3">
-      <div className="card rounded-lg h-[250px] shadow-small vertical-slide delay-1000">
-        {/* icon */}
-        <div className="">
-          <Image src={""} alt="" />
+      {cardsData.map((item) => (
+        <div className="flex flex-col items-center gap-2 rounded-lg h-[230px] p-5 vertical-slide hover:shadow-small transition-shadow">
+          {/* icon */}
+          <div className="w-[60px] h-[60px]">
+            <Image src={item.icon} alt="" className="w-full h-full" />
+          </div>
+          <div className="text-h4">{item.header}</div>
+          {/* desc */}
+          <div className="text-[14px] text-center">{item.desc}</div>
         </div>
-        {/* desc */}
-        <div className=""></div>
-      </div>
-      <div className="card rounded-lg h-[250px] shadow-small vertical-slide delay-700"></div>
-      <div className="card rounded-lg h-[250px] shadow-small vertical-slide delay-300"></div>
+      ))}
     </Container>
   );
 }

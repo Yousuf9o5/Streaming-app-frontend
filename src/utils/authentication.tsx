@@ -7,13 +7,16 @@ type Props = {
   children: Nodes;
 };
 
+export const unAuthPaths = ["/", "/login", "/register"];
+
 function Authentication({ children }: Props) {
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const path = window.location.pathname;
 
-    if (!token) {
+    if (!token && !unAuthPaths.includes(path)) {
       router.push("login");
     }
   }, []);
