@@ -1,0 +1,15 @@
+.vertical-slide {
+  animation-name: vertical-slide-animations;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+@keyframes vertical-slide-animations {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}

@@ -1,34 +1,45 @@
-import Container from "layouts/Container";
-import Link from "next/link";
-import styles from "./Header.module.css";
 import React from "react";
-import Image from "next/image";
-import icon from "svgs/undraw_pic_profile_re_7g2h.svg";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const Header = ({ children }: Props) => {
+export default function Header() {
   return (
-    <Container className="max-w-[1100px]">
-      <div className={styles.head}>
-        <h1>party app</h1>
-        <ul className={styles.ul}>
-          <li>
-            <Link className={styles.active} href="/">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <Image src={icon} alt="" />
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </Container>
+    <Navbar shouldHideOnScroll>
+      <NavbarBrand>
+        {/* <AcmeLogo /> */}
+        <h1 className="text-h1">LOGO</h1>
+      </NavbarBrand>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="#" aria-current="page">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button>Theme</Button>
+        </NavbarItem>
+      </NavbarContent>
+    </Navbar>
   );
-};
-
-export default Header;
+}

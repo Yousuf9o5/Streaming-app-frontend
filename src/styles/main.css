@@ -31,7 +31,33 @@
   font-size: clamp(1rem, 0.8vw, 0.8rem);
 }
 
+/* ########## animations ########## */
+.vertical-slide {
+  animation-name: vertical-slide-animations;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+@keyframes vertical-slide-animations {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}
 /* ########## index ########## */
 /* ########## pages ########## */
 /* ########## layouts ########## */
-/* ########## components ########## *//*# sourceMappingURL=main.css.map */
+/* ########## components ########## */
+p {
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.active-p {
+  opacity: 1;
+  transform: translateY(0px);
+  max-height: 50px;
+}/*# sourceMappingURL=main.css.map */

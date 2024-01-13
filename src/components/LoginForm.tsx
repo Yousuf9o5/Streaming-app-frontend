@@ -1,9 +1,16 @@
 import { Button, Input, Spinner } from "@nextui-org/react";
 import useLogin from "hooks/useLogin";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 function LoginForm() {
+  const router = useRouter();
   const { errMsg, handleSubmit, isLoading, onChange } = useLogin();
+
+  const handleClick = () => {
+    localStorage.setItem("token", "token");
+    router.push("/");
+  };
 
   return (
     <form
@@ -43,6 +50,7 @@ function LoginForm() {
         className="bg-primary text-white text-xl py-6"
         disabled={isLoading}
         type="submit"
+        onClick={handleClick}
       >
         {isLoading ? <Spinner color="white" /> : "Login"}
       </Button>
