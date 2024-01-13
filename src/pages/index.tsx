@@ -10,7 +10,7 @@ function Index() {
     <Container className="!grid m-auto justify-center w-[min(100%,_65rem)] overflow-hidden">
       <Header />
       <Introduction />
-      <VideoStream/>
+
       <Features />
     </Container>
   );
