@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React, { useState } from "react";
-import img from "images/20944342.jpg";
+import React from "react";
+import img from "images/20944342.png";
 import useIntervalCounter from "hooks/useIntervalCounter";
 
 const paragraphs = [
@@ -8,6 +8,7 @@ const paragraphs = [
   "Have Fun, enjoy",
   "Watch with friends",
   "Join Parties and Have some fun yeah",
+  "Upload your favorite videos",
 ];
 
 function Introduction() {

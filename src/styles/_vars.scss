@@ -20,3 +20,15 @@
 .text-h6 {
   font-size: clamp(1rem, 0.8vw, 0.8rem);
 }
+
+[data-theme="light"] {
+  --primary-clr: #565fe9;
+  --secondary-clr: white;
+  --text-clr: rgb(32, 32, 32);
+}
+
+[data-theme="dark"] {
+  --primary-clr: #565fe9;
+  --secondary-clr: rgb(32, 32, 32);
+  --text-clr: white;
+}

@@ -1,16 +1,9 @@
-import { Button, Input, Link, Spinner } from "@nextui-org/react";
-import useLogin from "hooks/useLogin";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { Button, Input, Spinner } from "@nextui-org/react";
+import useSignUp from "hooks/useSignUp";
+import React from "react";
 
-function LoginForm() {
-  const router = useRouter();
-  const { errMsg, handleSubmit, isLoading, onChange } = useLogin();
-
-  const handleClick = () => {
-    localStorage.setItem("token", "token");
-    router.push("/");
-  };
+function SignupForm() {
+  const { errMsg, handleSubmit, isLoading, onChange } = useSignUp();
 
   return (
     <form
@@ -26,18 +19,38 @@ function LoginForm() {
       {/* inputs fields */}
       <div className="flex flex-col gap-3 my-[4rem]">
         <Input
+          type="text"
+          name="displayName"
+          variant="bordered"
+          color="primary"
+          size="lg"
+          placeholder="display name"
+          onChange={onChange}
+          className="bg-secondary-theme"
+        />
+        <Input
           type="email"
           name="email"
           variant="bordered"
           color="primary"
           size="lg"
-          placeholder="email"
+          placeholder="email@email.com"
           onChange={onChange}
           className="bg-secondary-theme"
         />
         <Input
           type="password"
           name="password"
+          variant="bordered"
+          color="primary"
+          size="lg"
+          placeholder="********"
+          onChange={onChange}
+          className="bg-secondary-theme"
+        />
+        <Input
+          type="password"
+          name="passwordConform"
           variant="bordered"
           color="primary"
           size="lg"
@@ -52,18 +65,11 @@ function LoginForm() {
         className="bg-primary text-white text-xl py-6"
         disabled={isLoading}
         type="submit"
-        onClick={handleClick}
       >
         {isLoading ? <Spinner color="white" /> : "Login"}
       </Button>
-      <div className="absolute right-0 top-0">
-        <span>Don't have account </span>
-        <Link href={"/register"} className="color-primary-theme">
-          Register
-        </Link>
-      </div>
     </form>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
