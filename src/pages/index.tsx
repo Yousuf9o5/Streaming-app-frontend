@@ -1,7 +1,13 @@
+import Introduction from "components/Introduction";
+import Container from "layouts/Container";
 import React from "react";
 
 function Index() {
-  return <div>Home</div>;
+  return (
+    <Container>
+      <Introduction />
+    </Container>
+  );
 }
 
 export default Index;

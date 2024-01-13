@@ -12,4 +12,6 @@ export type setObject = React.Dispatch<React.SetStateAction<Object>>;
 
 export type Nodes = React.ReactNode;
 
-export type Event = React.ChangeEvent<any>;
+export type Css = React.CSSProperties;
+
+export type Event<T> = React.ChangeEvent<T>;
