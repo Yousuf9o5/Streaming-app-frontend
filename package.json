@@ -9,11 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
-    "@lottiefiles/lottie-player": "^2.0.2",
-    "@nextui-org/react": "^2.2.9",
->>>>>>> cb1e5b66a0b203b9dcf27061dbb1fc8dc4a5b5a0
     "axios": "^1.6.5",
     "framer-motion": "^10.18.0",
     "next": "^14.0.4",

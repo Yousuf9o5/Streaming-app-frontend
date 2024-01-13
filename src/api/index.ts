@@ -6,4 +6,6 @@ export class Apis {
   static readonly login = "user/login";
 
   static readonly signup = "user/signup";
+
+  static readonly showMovies = "movies/myMovies";
 }

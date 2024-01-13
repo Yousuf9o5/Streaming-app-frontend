@@ -11,15 +11,12 @@ import {
 import { useSetRecoilState } from "recoil";
 import { themeState } from "atoms/theme";
 import useLocaleStorage from "hooks/useLocaleStorage";
-import { ButtonFunction } from "types/function.types";
-import { useRouter } from "next/router";
 import profileImage from "svgs/undraw_pic_profile_re_7g2h.svg";
 
 export default function Header() {
   const setTheme = useSetRecoilState(themeState);
   const [themeStorage, setThemeStorage] = useLocaleStorage("theme");
-  const [token, setToken] = useLocaleStorage("token");
-  const router = useRouter();
+  const token = useLocaleStorage("token")[0];
   const handleChangeTheme = () => {
     const theme = localStorage.getItem("theme");
 
@@ -32,47 +29,21 @@ export default function Header() {
     }
   };
 
-  const handleLogout: ButtonFunction = () => {
-    setToken("");
-    localStorage.removeItem("token");
-    router.push("/");
-  };
-
   return (
     <Navbar shouldHideOnScroll className="bg-secondary-theme">
       <NavbarBrand>
         {/* <AcmeLogo /> */}
-        <h1 className="text-h1">LOGO</h1>
+        <h1 className="text-h3">Watch Party App</h1>
       </NavbarBrand>
-      {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent> */}
+
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/profile">
-            <Image src={profileImage.src} alt="" />
-          </Link>
-        </NavbarItem>
+        <NavbarItem className="hidden lg:flex"></NavbarItem>
 
         <NavbarItem className="hidden lg:flex">
           {token ? (
-            <Button onClick={handleLogout} color="primary">
-              logout
-            </Button>
+            <Link href="/profile">
+              <Image src={profileImage.src} alt="" />
+            </Link>
           ) : (
             <Link href="/login">login</Link>
           )}

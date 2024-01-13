@@ -7,11 +7,6 @@ function LoginForm() {
   const router = useRouter();
   const { errMsg, handleSubmit, isLoading, onChange } = useLogin();
 
-  const handleClick = () => {
-    localStorage.setItem("token", "token");
-    router.push("/");
-  };
-
   return (
     <form
       className="relative flex-1 m-auto flex flex-col gap-3 w-[60%] min-w-[400px] py-10"
@@ -52,7 +47,6 @@ function LoginForm() {
         className="bg-primary text-white text-xl py-6"
         disabled={isLoading}
         type="submit"
-        onClick={handleClick}
       >
         {isLoading ? <Spinner color="white" /> : "Login"}
       </Button>
