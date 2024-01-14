@@ -4,8 +4,8 @@ import Image from "next/image";
 
 function FormLeftSide() {
   return (
-    <div className="flex-1 p-[1rem] rounded-[2rem] h-full">
-      <Image src={image} alt="" />
+    <div className="flex-1 p-[1rem] rounded-[2rem] max-h-[700px] max-w-[700px] ">
+      <Image src={image} alt="" priority={false} />
       {/* <TempImage width={700} height={700} /> */}
     </div>
   );

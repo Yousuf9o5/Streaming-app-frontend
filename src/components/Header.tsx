@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -13,10 +13,16 @@ import { themeState } from "atoms/theme";
 import useLocaleStorage from "hooks/useLocaleStorage";
 import profileImage from "svgs/undraw_pic_profile_re_7g2h.svg";
 
-export default function Header() {
+type Props = {
+  screen?: boolean;
+};
+
+export default function Header({ screen = false }: Props) {
   const setTheme = useSetRecoilState(themeState);
   const [themeStorage, setThemeStorage] = useLocaleStorage("theme");
   const token = useLocaleStorage("token")[0];
+  const navRef = useRef<HTMLDivElement>(null);
+
   const handleChangeTheme = () => {
     const theme = localStorage.getItem("theme");
 
@@ -29,8 +35,16 @@ export default function Header() {
     }
   };
 
+  useEffect(() => {
+    const { current } = navRef;
+
+    if (screen) {
+      current?.classList.add("w-screen");
+    }
+  }, []);
+
   return (
-    <Navbar shouldHideOnScroll className="bg-secondary-theme">
+    <Navbar ref={navRef} shouldHideOnScroll className="bg-secondary-theme">
       <NavbarBrand>
         {/* <AcmeLogo /> */}
         <h1 className="text-h3">Watch Party App</h1>

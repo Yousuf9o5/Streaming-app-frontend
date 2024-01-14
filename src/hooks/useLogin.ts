@@ -1,10 +1,9 @@
 import { LoginApi } from "api/auth";
-import { userState } from "atoms/user";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
 import { FormFunction, InputFunction } from "types/function.types";
 import { LoginFields } from "types/request.types";
+import Cookies from "js-cookie";
 
 //todo:
 function useLogin() {
@@ -19,7 +18,7 @@ function useLogin() {
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get("token");
 
     if (token) {
       router.push("/");
@@ -37,7 +36,7 @@ function useLogin() {
 
     //TODO: Update Params Types
     const onThen = (data: any) => {
-      localStorage.setItem("token", data?.token);
+      Cookies.set("token", data?.token);
       router.push("/");
     };
 

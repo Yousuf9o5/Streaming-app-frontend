@@ -5,15 +5,15 @@ import React, { useState } from "react";
 
 function LoginForm() {
   const router = useRouter();
-  const { errMsg, handleSubmit, isLoading, onChange } = useLogin();
+  const { handleSubmit, isLoading, onChange } = useLogin();
 
   return (
     <form
-      className="relative flex-1 m-auto flex flex-col gap-3 w-[60%] min-w-[400px] py-10"
+      className="relative flex-1 m-auto flex flex-col justify-center gap-3 h-full w-[100%] max-w-[500px] py-10"
       onSubmit={handleSubmit}
     >
       {/* header */}
-      <div className="absolute w-[150px] h-[150px] blur-[7rem] bg-primary opacity-[0.2] top-[20%] right-4"></div>
+      <div className="absolute h-[150px] blur-[7rem] bg-primary opacity-[0.2] top-[20%] right-4"></div>
       <div className="relative z-2 text-center">
         <h1 className="text-h1">Hello Again</h1>
         <h4 className="text-h4">Welcome to our Stream Application</h4>

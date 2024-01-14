@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import Cookies from "js-cookie";
 
 export const userState = atom({
   key: "userState",
@@ -7,5 +8,5 @@ export const userState = atom({
 
 export const tokenState = atom({
   key: "tokenState",
-  default: localStorage.getItem("token") || "",
+  default: Cookies.get("token") || "",
 });
