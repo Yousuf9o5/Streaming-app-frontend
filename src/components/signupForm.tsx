@@ -7,7 +7,7 @@ function SignupForm() {
 
   return (
     <form
-      className="relative flex-1 m-auto flex flex-col gap-3 w-[60%] min-w-[400px] py-10"
+      className="relative flex-1 m-auto flex flex-col gap-3 h-full w-[60%] min-w-[400px] py-10"
       onSubmit={handleSubmit}
     >
       {/* header */}

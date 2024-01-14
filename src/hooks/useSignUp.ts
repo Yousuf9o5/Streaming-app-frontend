@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { signUp } from "api/auth";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ function useSignUp() {
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get("token");
     if (token) {
       router.push("/");
     }
@@ -27,7 +28,7 @@ function useSignUp() {
 
     //TODO: Update Params Types
     const onThen = (data: any) => {
-      localStorage.setItem("token", data?.token);
+      Cookies.set("token", data?.token);
       router.push("/");
     };
 

@@ -6,14 +6,13 @@ import axios from "axios";
 import Container from "layouts/Container";
 import { RecoilRoot } from "recoil";
 import Theme from "./theme";
+import Cookies from "js-cookie";
 
 /**
  * @axios defaults
  */
 axios.defaults.baseURL = Apis.baseUrlV1;
-// axios.defaults.headers.common.Authorization = `Bearer ${
-//   localStorage.getItem("token") ?? ""
-// }`;
+axios.defaults.headers.common.Authorization = "Bearer " + Cookies.get("token");
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
