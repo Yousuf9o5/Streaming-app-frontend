@@ -28,7 +28,7 @@ function Chat() {
           className="flex-1"
           color={chat ? "default" : "secondary"}
         >
-          <Badge content="5" color="primary">
+          <Badge content="5" color="primary" className="translate-x-6">
             members
           </Badge>
         </Button>
@@ -37,7 +37,7 @@ function Chat() {
           className="flex-1"
           color={chat ? "secondary" : "default"}
         >
-          <Badge content="5" color="primary">
+          <Badge content="5" color="primary" className="translate-x-6">
             Chat
           </Badge>
         </Button>
