@@ -16,9 +16,9 @@ function Authentication({ children }: Props) {
   const path = router.pathname;
 
   useEffect(() => {
-    if (!token && !unAuthPaths.includes(path)) {
-      router.push("login");
-    }
+    // if (!token && !unAuthPaths.includes(path)) {
+    //   router.push("/login");
+    // }
   }, []);
 
   return <>{children}</>;
