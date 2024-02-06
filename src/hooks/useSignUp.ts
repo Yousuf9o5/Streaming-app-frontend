@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
-import { signUp } from "api/auth";
+import { SignUp } from "api/auth";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormFunction, InputFunction } from "types/function.types";
 
 function useSignUp() {
@@ -38,7 +38,7 @@ function useSignUp() {
 
     const onFinally = () => setIsLoading(false);
 
-    signUp(data).then(onThen).catch(onCatch).finally(onFinally);
+    SignUp(data).then(onThen).catch(onCatch).finally(onFinally);
   };
 
   return { onChange, errMsg, handleSubmit, isLoading };
