@@ -1,4 +1,3 @@
-
 export type button = HTMLButtonElement;
 
 export type input = HTMLInputElement;
@@ -20,3 +19,5 @@ export type textarea = HTMLTextAreaElement;
 export type label = HTMLLabelElement;
 
 export type table = HTMLTableElement;
+
+export type Video = HTMLVideoElement;
