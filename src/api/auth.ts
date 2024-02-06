@@ -1,22 +1,34 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { Apis } from ".";
+import URLS from "./URLS";
+import { ObjRes, ProfileAttributes } from "types/response.types";
 
 export async function LoginApi(data: any) {
   const config: AxiosRequestConfig = {
     method: "post",
-    url: Apis.login,
+    url: URLS.login,
     data,
   };
 
   return await axios(config).then((res) => res.data);
 }
 
-export async function signUp(data: any) {
+export async function SignUp(data: any) {
   const config: AxiosRequestConfig = {
     method: "post",
-    url: Apis.signup,
+    url: URLS.signup,
     data,
   };
 
   return await axios(config).then((res) => res.data);
+}
+
+export async function GetUserData() {
+  const config: AxiosRequestConfig = {
+    method: "GET",
+    url: URLS.UserInformation,
+  };
+
+  const callback: ObjRes<ProfileAttributes> = (res) => res.data;
+
+  return await axios(config).then(callback);
 }
