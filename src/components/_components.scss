@@ -8,3 +8,8 @@ p {
   transform: translateY(0px);
   max-height: 50px;
 }
+
+.video-container video {
+  width: 100% !important;
+  height: auto !important;
+}
