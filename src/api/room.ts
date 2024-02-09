@@ -1,6 +1,11 @@
 import axios, { AxiosRequestConfig } from "axios";
 import URLS from "./URLS";
-import { ObjRes } from "types/response.types";
+import {
+  ArrRes,
+  ObjRes,
+  RoomAttributes,
+  UserAttributes,
+} from "types/response.types";
 
 /** @param id movie id */
 export async function CreateRoom(id: string) {
@@ -10,7 +15,32 @@ export async function CreateRoom(id: string) {
     url: URLS.CreateRoom,
   };
 
-  const callback: ObjRes<null> = (res) => res.data;
+  const callback: ObjRes<RoomAttributes> = (res) => res.data;
+
+  return axios(config).then(callback);
+}
+
+/** @param id movie id */
+export async function getRoomById(id: string) {
+  const config: AxiosRequestConfig = {
+    method: "GET",
+    url: URLS.GetRoomById + id,
+  };
+
+  const callback: ObjRes<RoomAttributes> = (res) => res.data;
+
+  return axios(config).then(callback);
+}
+
+/** @param memberId members id */
+export async function getRoomMembers(membersId: string[]) {
+  const config: AxiosRequestConfig = {
+    method: "post",
+    url: URLS.GetRoomMembers,
+    data: { members: membersId },
+  };
+
+  const callback: ArrRes<UserAttributes> = (res) => res.data;
 
   return axios(config).then(callback);
 }
