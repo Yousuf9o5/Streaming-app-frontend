@@ -44,7 +44,11 @@ export default function Header({ screen = false }: Props) {
   }, []);
 
   return (
-    <Navbar ref={navRef} shouldHideOnScroll className="bg-secondary-theme">
+    <Navbar
+      ref={navRef}
+      shouldHideOnScroll
+      className="bg-secondary-theme h-[7vh] min-h-[50px]"
+    >
       <NavbarBrand>
         {/* <AcmeLogo /> */}
         <h1 className="text-h3">Watch Party App</h1>
@@ -62,7 +66,10 @@ export default function Header({ screen = false }: Props) {
             <Link href="/login">login</Link>
           )}
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="flex items-center gap-4">
+          <Link href="/profile">
+            <Image src={profileImage.src} alt="" />
+          </Link>
           <Button onClick={handleChangeTheme} color="secondary">
             Theme
           </Button>
