@@ -17,7 +17,7 @@ export interface ErrorResponse {
   msg: string;
 }
 
-export type ObjRes<T> = (res: AxiosResponse<Response<T>>) => Response<T>;
+export type ObjRes<T> = (res: AxiosResponse<Response<T>>) => Response<T> | void;
 
 export type ArrRes<T> = (res: AxiosResponse<Response<T[]>>) => Response<T[]>;
 
@@ -37,4 +37,24 @@ export type MovieAttributes = {
   filename: string;
   userId: string;
   roomId: string | null;
+};
+
+export type RoomAttributes = {
+  id?: string;
+  userId: string;
+  movieId: string;
+  public: boolean;
+  party: boolean;
+};
+
+export type UserAttributes = {
+  id: string;
+  fullname: string;
+  email: string;
+  image: string;
+  password: string;
+  confirmPassword: string;
+  role: string;
+  createdAt: Date;
+  updatedAt: Date;
 };

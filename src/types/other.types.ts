@@ -3,3 +3,8 @@ export type FeaturesCard = {
   header: string;
   desc: string;
 };
+
+export interface TokenData {
+  id: string;
+  exp: number;
+}
