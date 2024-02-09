@@ -1,35 +1,91 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { GetMoviesById } from "api/movie";
+import React, { ReactEventHandler, useEffect, useRef, useState } from "react";
+import { MovieAttributes } from "types/response.types";
+import socket from "../socket";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
+import { Video as VideoElement } from "types/elements.types";
+import useGet from "hooks/useGet";
+import URLS from "api/URLS";
 
 type Props = {
-  videoUrl?: string;
-  videoInf?: { name: string; desc: string };
+  movieId: string;
+  isOwner: boolean;
 };
 
-function Video({ videoInf, videoUrl }: Props) {
+function Video({ movieId, isOwner }: Props) {
   const { query } = useRouter();
-  const [data, setData] = useState({});
+  const videoRef = useRef<VideoElement>(null);
+  const video = useGet<MovieAttributes>(movieId, URLS.GetMovieById);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const { current } = videoRef;
+    // if (isOwner) return;
+    if (!current) return;
+
+    const getVideoTime = (time: number) => {
+      setIsPlaying(false);
+      current.currentTime = time;
+    };
+
+    const isPlay = async (play: boolean) => {
+      if (play) {
+        await current.play();
+        // current.muted = false;
+        setIsPlaying(true);
+      } else {
+        setIsPlaying(false);
+        // current.muted = true;
+        current.pause();
+      }
+    };
+
+    socket.on("play it", isPlay);
+    socket.on("get video time", getVideoTime);
+
+    return () => {
+      socket.off("get video time", getVideoTime);
+      socket.off("play it", isPlay);
+    };
+  }, [video?.url, isPlaying]);
+
+  const onTimeUpdate: ReactEventHandler<VideoElement> = (e) => {
+    if (!isOwner) return;
+    const { currentTime } = e.target as VideoElement;
+    socket.emit("video timeline", query.id, currentTime, isPlaying);
+  };
+
+  const onPlay = () => {
+    if (!isOwner) return;
+    socket.emit("play video", query.id, true);
+    setIsPlaying(true);
+  };
+
+  const onPause = () => {
+    if (!isOwner) return;
+    socket.emit("play video", query.id, false);
+    setIsPlaying(false);
+  };
 
   return (
-    <div className="min-w-[70dvw] w-full px-4 flex flex-col gap-4">
-      <video width="320" height="240" controls className="w-full rounded-xl">
-        <source
-          src="https://www.youtube.com/watch?v=zWh3CShX_do"
-          type="video/mp4"
-        />
-      </video>
-
-      <h2 className="text-h2">Lorem, ipsum dolor sit amet ?</h2>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. A animi
-        quisquam, autem et, debitis minus alias dolorem officia quidem omnis
-        similique dignissimos rerum facere molestias unde quasi eos, blanditiis
-        esse.
-      </p>
+    <div className="col-span-3">
+      {video?.url && (
+        <video
+          ref={videoRef}
+          controls={isOwner}
+          className="rounded-xl"
+          onTimeUpdate={onTimeUpdate}
+          onPlay={onPlay}
+          onPause={onPause}
+          playsInline={true}
+        >
+          <source src={video?.url} />
+        </video>
+      )}
+      <div className="py-5">
+        <h2 className="text-h2">{video?.name}</h2>
+        <p>{video?.desc}</p>
+      </div>
     </div>
   );
 }
