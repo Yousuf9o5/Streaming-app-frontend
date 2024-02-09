@@ -65,6 +65,10 @@
   color: var(--text-clr);
 }
 
+* {
+  font-family: "Poppins", sans-serif !important;
+}
+
 input {
   background: transparent;
 }
@@ -78,6 +82,14 @@ input {
 }
 
 /* ########## pages ########## */
+.video-and-chat {
+  height: 90vh;
+  display: flex;
+  padding: 2rem;
+  padding-top: 0;
+  gap: 2rem;
+}
+
 /* ########## layouts ########## */
 /* ########## components ########## */
 p {
@@ -89,4 +101,9 @@ p {
   opacity: 1;
   transform: translateY(0px);
   max-height: 50px;
+}
+
+.video-container video {
+  width: 100% !important;
+  height: auto !important;
 }/*# sourceMappingURL=main.css.map */
