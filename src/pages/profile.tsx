@@ -26,7 +26,7 @@ function Profile() {
       <div className="header">
         <h1 className="text-center text-h1">Movies to watch</h1>
       </div>
-      <section className="py-10 bg-gray-100 grid grid-cols-4 gap-4 w-[70dvw] m-auto">
+      <section className="py-10 bg-gray-100 grid grid-cols-3 gap-4 w-[70dvw] m-auto">
         {movies?.map((item) => (
           <MovieCard
             movieId={item.id}
