@@ -3,14 +3,17 @@
   color: var(--text-clr);
 }
 
+* {
+  font-family: "Poppins", sans-serif !important;
+}
+
 input {
   background: transparent;
 }
 
-
-.chat{
+.chat {
   flex: 1;
 }
-.video{
+.video {
   flex: 1;
 }
