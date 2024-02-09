@@ -1,65 +1,47 @@
 import { Badge, Button } from "@nextui-org/react";
-import React, { useEffect, useRef, useState } from "react";
-import { div } from "types/elements.types";
+import useChatTransition from "hooks/useChatTransition";
+import React, { useEffect, useState } from "react";
+import Members from "./Members";
+import ChatBox from "./ChatBox";
+import ChatControllers from "./ChatControllers";
+import { jwtDecode } from "jwt-decode";
+import socket from "../socket";
+import { useRouter } from "next/router";
 
 function Chat() {
-  const [chat, setChat] = useState(true);
-  const chatRef = useRef<div>(null);
-  const membersRef = useRef<div>(null);
+  const { query, isReady } = useRouter();
+  const { chat, setChat, chatRef, membersRef } = useChatTransition();
+  const [memberFlag, setMemberFlag] = useState(false);
+  const [membersId, setMembersId] = useState<string[]>([]);
 
   useEffect(() => {
-    const { current: chatCurrent } = chatRef;
-    const { current: membersCurrent } = membersRef;
-    if (chat) {
-      chatCurrent?.classList.replace("opacity-0", "opacity-1");
-      membersCurrent?.classList.replace("opacity-1", "opacity-0");
-      setTimeout(() => {}, 250);
-    } else {
-      membersCurrent?.classList.replace("opacity-0", "opacity-1");
-      chatCurrent?.classList.replace("opacity-1", "opacity-0");
-    }
-  }, [chat]);
+    if (!isReady) return;
+    const token = localStorage.getItem("token")!;
+
+    const tokenDecoded: { id: string } = jwtDecode(token);
+
+    socket.emit("join room", query.id, tokenDecoded.id);
+
+    const newMemberCallback = (data: string[]) => {
+      setMembersId([...data]);
+    };
+
+    socket.on("joined members", newMemberCallback);
+
+    return () => {
+      socket.emit("disconnect", query.id, tokenDecoded.id);
+      socket.disconnect();
+    };
+  }, [isReady]);
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-[min(750px,_100%)]">
       <div className="w-full flex justify-between gap-4">
-        <Button
-          onClick={() => setChat(false)}
-          className="flex-1"
-          color={chat ? "default" : "secondary"}
-        >
-          <Badge content="5" color="primary" className="translate-x-6">
-            members
-          </Badge>
-        </Button>
-        <Button
-          onClick={() => setChat(true)}
-          className="flex-1"
-          color={chat ? "secondary" : "default"}
-        >
-          <Badge content="5" color="primary" className="translate-x-6">
-            Chat
-          </Badge>
-        </Button>
+        <ChatControllers chat={chat} setChat={setChat} />
       </div>
       <div className="relative rounded-xl h-full">
-        <div
-          ref={membersRef}
-          className="bg-secondary-theme opacity-0 transition-opacity absolute inset-0 flex flex-col gap-4 h-full rounded-xl shadow-medium"
-        >
-          <h2 className="w-full h-full text-text-gray-500 p-4">
-            No members for now
-          </h2>
-        </div>
-        <div
-          ref={chatRef}
-          className="bg-secondary-theme opacity-1 transition-opacity relative flex flex-col gap-4 h-full rounded-xl shadow-medium"
-        >
-          {/* chats */}
-          <h2 className="w-full h-full text-text-gray-500 p-4">
-            No Chatting for now
-          </h2>
-        </div>
+        <Members ref={membersRef} data={membersId} />
+        <ChatBox ref={chatRef} />
       </div>
       <div className="flex gap-4">
         <input
