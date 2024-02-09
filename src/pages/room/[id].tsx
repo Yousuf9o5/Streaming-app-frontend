@@ -1,26 +1,37 @@
-import React, { useEffect } from "react";
-import { socket } from "../../socket";
+import React, { useEffect, useState } from "react";
+// import { socket } from "../../socket";
 import Header from "components/Header";
 import Video from "components/Video";
-import Chat from "components/chat";
+import Chat from "components/Chat";
+import useSetupRoom from "hooks/useSetupRoom";
+import { useRouter } from "next/router";
+import socket from "../../socket";
+import useGetTokenData from "hooks/useGetTokenData";
 
 function Room() {
-  useEffect(() => {
-    function onConnect() {
-      console.log("socket connected");
-    }
+  const { query, isReady } = useRouter();
+  const { movieId, party, public: isPublic, userId, id } = useSetupRoom();
+  const [isOwner, setIsOwner] = useState(false);
+  const tokenData = useGetTokenData();
 
-    socket.on("connection", onConnect);
+  useEffect(() => {
+    if (!isReady) return;
+    if (tokenData.id === userId) setIsOwner(true);
+
+    socket.connect();
+    socket.emit("setup", query.id);
 
     return () => {
-      socket.off("connection");
+      socket.disconnect();
+      socket.emit("setup", query.id);
     };
-  }, []);
+  }, [isReady, userId]);
+
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen overflow-y-auto">
       <Header />
-      <div className="flex flex-row h-[93dvh] p-[2rem]">
-        <Video />
+      <div className="video-and-chat flex-wrap">
+        <Video movieId={movieId} isOwner={isOwner} />
         <Chat />
       </div>
     </div>
