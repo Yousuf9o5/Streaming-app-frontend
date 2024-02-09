@@ -1,4 +1,6 @@
 import { io } from "socket.io-client";
-import { Apis } from "./api/URLS";
+import URLS from "./api/URLS";
 
-export const socket = io(Apis.root);
+const socket = io(URLS.root);
+
+export default socket;
