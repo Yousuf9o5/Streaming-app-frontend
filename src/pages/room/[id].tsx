@@ -30,7 +30,7 @@ function Room() {
   return (
     <div className="w-screen h-screen overflow-y-auto">
       <Header />
-      <div className="video-and-chat flex-wrap">
+      <div className="video-and-chat">
         <Video movieId={movieId} isOwner={isOwner} />
         <Chat />
       </div>

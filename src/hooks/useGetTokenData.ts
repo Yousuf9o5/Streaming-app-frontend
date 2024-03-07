@@ -8,9 +8,12 @@ function useGetTokenData(): TokenData {
   useEffect(() => {
     const token = localStorage.getItem("token")!;
 
-    const decodedToken = jwtDecode(token) as TokenData;
-
-    setIdTokenData(decodedToken);
+    try {
+      const decodedToken = jwtDecode(token) as TokenData;
+      setIdTokenData(decodedToken);
+    } catch (error) {
+      console.log("invalid token");
+    }
   }, []);
 
   return tokenData;

@@ -58,3 +58,9 @@ export type UserAttributes = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type msgAttributes = {
+  id?: string;
+  content: string;
+  userId: string;
+};

@@ -1,4 +1,4 @@
-import { Badge, Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import useChatTransition from "hooks/useChatTransition";
 import React, { useEffect, useState } from "react";
 import Members from "./Members";
@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 function Chat() {
   const { query, isReady } = useRouter();
   const { chat, setChat, chatRef, membersRef } = useChatTransition();
-  const [memberFlag, setMemberFlag] = useState(false);
   const [membersId, setMembersId] = useState<string[]>([]);
 
   useEffect(() => {
@@ -41,7 +40,7 @@ function Chat() {
       </div>
       <div className="relative rounded-xl h-full">
         <Members ref={membersRef} data={membersId} />
-        <ChatBox ref={chatRef} />
+        <ChatBox ref={chatRef} data={[]} />
       </div>
       <div className="flex gap-4">
         <input
